@@ -1,0 +1,64 @@
+{
+  "name": "@trapcodien/create-node-project",
+  "cliName": "create-node-project",
+  "version": "1.0.0",
+  "description": "A CLI tool to create node projects",
+  "bin": {
+    "create-node-project": "dist/index.js"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "tsc": "tsc --build src",
+    "tsc:watch": "tsc --build src --watch",
+    "tsc:check": "tsc --build src --noEmit",
+    "build": "npm run tsc",
+    "build:watch": "npm run tsc:watch",
+    "build:check": "npm run tsc:check",
+    "rebuild": "npm run clean && npm run build",
+    "lint": "npx eslint src --ext .ts,.tsx,.json --max-warnings=0",
+    "lint:all": "npm run lint && npm run prettier:check && npm run spell:check",
+    "lint:fix": "npm run lint --fix",
+    "spell:check": "cspell \"{README.md,.github/*.md,src/**/*.ts}\"",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
+    "clean:all": "npm run clean",
+    "cucumber:prepare": "copyfiles -u 1 src/**/*.feature dist/",
+    "cucumber": "npm run build && npm run cucumber:prepare && npm run cucumber:run",
+    "cucumber:run": "NODE_ENV=test cucumber-js dist",
+    "test": "NODE_ENV=test jest --verbose",
+    "test:functional": "npm run cucumber",
+    "test:all": "npm run test && npm run test:functional",
+    "test:ci": "npm run clean:all && npm run build && npm run lint:all && npm run test && npm run cucumber:prepare && npm run cucumber:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillaumearm/create-node-project.git"
+  },
+  "keywords": [],
+  "author": "Guillaume ARM",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guillaumearm/create-node-project/issues"
+  },
+  "homepage": "https://github.com/guillaumearm/create-node-project#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "8.5.1",
+    "@trapcodien/eslint-config": "1.0.4",
+    "@trapcodien/prettier-config": "1.0.4",
+    "@trapcodien/tsconfig": "1.0.6",
+    "@types/jest": "28.1.6",
+    "copyfiles": "2.4.1",
+    "cspell": "6.5.0",
+    "eslint": "8.20.0",
+    "jest": "28.1.3",
+    "prettier": "2.7.1",
+    "ts-jest": "28.0.7",
+    "ts-node": "10.9.1",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "commander": "9.4.0"
+  }
+}
