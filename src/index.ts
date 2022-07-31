@@ -65,6 +65,7 @@ const packageData = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 const newPackageData = {
   ...packageData,
   name: projectName,
+  version: '0.0.0',
   private: undefined,
   description: '',
   repository: undefined,
