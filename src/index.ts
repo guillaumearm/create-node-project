@@ -72,6 +72,11 @@ const newPackageData = {
   homepage: undefined,
 };
 
+if (projectType === 'cli') {
+  newPackageData.cliName = projectName;
+  newPackageData.bin = { [projectName]: 'dist/index.js' };
+}
+
 fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageData, undefined, 2));
 console.log(`> Updated package.json for project '${projectName}'`);
 
