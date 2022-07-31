@@ -1,7 +1,7 @@
 {
   "name": "@trapcodien/create-node-project",
   "cliName": "create-node-project",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A CLI tool to create node projects",
   "bin": {
     "create-node-project": "dist/index.js"
